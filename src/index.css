@@ -1,66 +1,187 @@
-html {
-  scroll-behavior: smooth;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 250 20% 98%;
+  --foreground: 240 10% 3.9%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 5.3% 44.7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  
+  /* Custom purple color scheme */
+  --primary: 275 100% 14%;
+  --primary-foreground: 0 0% 100%;
+  --primary-light: 275 100% 18%;
+  --primary-dark: 275 100% 10%;
+  --primary-50: 288, 33%, 97%;
+  --primary-100: 296, 39%, 93%;
+  
+  --secondary: 282 45% 21%;
+  --secondary-foreground: 0 0% 100%;
+  --secondary-light: 282 45% 26%;
+  --secondary-dark: 282 45% 16%;
+  
+  --accent: 275 34% 45%;
+  --accent-foreground: 0 0% 100%;
+  --accent-light: 275 34% 50%;
+  --accent-dark: 275 34% 40%;
+  
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  
+  --ring: 275 34% 45%;
+  --radius: 0.5rem;
+  
+  /* Customer status colors */
+  --status-new: 275 34% 50%;
+  --status-contacted: 40 96% 56%;
+  --status-closed: 160 84% 39%;
+  --status-inactive: 220 8% 56%;
 }
 
-/* HeroCards background shadow */
-.shadow {
-  position: absolute;
-  background: hsl(var(--primary) / 0%);
-  border-radius: 24px;
-  rotate: 35deg;
-  z-index: -1;
-  width: 260px;
-  top: 200px;
-  height: 400px;
-  filter: blur(150px);
-  will-change: transform;
-  animation: shadow-slide infinite 4s linear alternate;
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  
+  /* Custom purple color scheme (dark mode) */
+  --primary: 275 60% 25%;
+  --primary-foreground: 0 0% 100%;
+  --primary-light: 275 60% 30%;
+  --primary-dark: 275 60% 20%;
+  --primary-50: 288, 33%, 97%;
+  --primary-100: 296, 39%, 93%;
+  
+  --secondary: 282 35% 25%;
+  --secondary-foreground: 0 0% 100%;
+  --secondary-light: 282 35% 30%;
+  --secondary-dark: 282 35% 20%;
+  
+  --accent: 275 34% 55%;
+  --accent-foreground: 0 0% 100%;
+  --accent-light: 275 34% 60%;
+  --accent-dark: 275 34% 50%;
+  
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 240 4.9% 83.9%;
+  
+  /* Customer status colors (dark mode) */
+  --status-new: 275 34% 60%;
+  --status-contacted: 40 96% 67%;
+  --status-closed: 160 84% 45%;
+  --status-inactive: 220 8% 70%;
 }
 
-@keyframes shadow-slide {
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+  
+  .sidebar-link.active {
+    @apply bg-[#2c0036] border-l-4 border-[#9a5dac];
+  }
+}
+
+@layer utilities {
+  .status-new {
+    color: hsl(var(--status-new));
+    background-color: hsla(var(--status-new) / 0.1);
+  }
+  
+  .status-contacted {
+    color: hsl(var(--status-contacted));
+    background-color: hsla(var(--status-contacted) / 0.1);
+  }
+  
+  .status-closed {
+    color: hsl(var(--status-closed));
+    background-color: hsla(var(--status-closed) / 0.1);
+  }
+  
+  .status-inactive {
+    color: hsl(var(--status-inactive));
+    background-color: hsla(var(--status-inactive) / 0.1);
+  }
+
+  .scrollbar-thin-no-arrows {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: rgba(100,100,100,0.5) transparent; /* Firefox */
+  }
+
+  /* Chrome, Edge, Safari */
+  .scrollbar-thin-no-arrows::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin-no-arrows::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin-no-arrows::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 100, 100, 0.5);
+    border-radius: 3px;
+  }
+
+  /* Hide up/down arrows */
+  .scrollbar-thin-no-arrows::-webkit-scrollbar-button {
+    display: none;
+    height: 0;
+    width: 0;
+  }
+}
+
+@keyframes slowpulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.7); }
+  50% { box-shadow: 0 0 0 8px rgba(34,197,94,0.2); }
+}
+
+.animate-slowpulse {
+  animation: slowpulse 2.5s cubic-bezier(0.4,0,0.6,1) infinite;
+}
+
+@keyframes slide-in-left {
   from {
-    background: hsl(var(--primary) / 20%);
-    right: 460px;
+    transform: translateX(-100%);
+    opacity: 0.7;
   }
   to {
-    background: hsl(var(--primary) / 80%);
-    right: 160px;
+    transform: translateX(0);
+    opacity: 1;
   }
 }
-
-@media (max-width: 1024px) {
-  .shadow {
-    top: 70px;
-  }
-
-  @keyframes shadow-slide {
-    from {
-      background: hsl(var(--primary) / 20%);
-      right: 460px;
-    }
-    to {
-      background: hsl(var(--primary) / 50%);
-      right: 160px;
-    }
-  }
+.animate-slide-in-left {
+  animation: slide-in-left 0.4s cubic-bezier(0.4,0,0.2,1);
 }
 
-@media (max-width: 768px) {
-  .shadow {
-    top: 70px;
-    width: 100px;
-    height: 350px;
-    filter: blur(60px);
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0.7;
   }
-
-  @keyframes shadow-slide {
-    from {
-      background: hsl(var(--primary) / 20%);
-      right: 280px;
-    }
-    to {
-      background: hsl(var(--primary) / 30%);
-      right: 100px;
-    }
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
+}
+.animate-slide-in-right {
+  animation: slide-in-right 0.4s cubic-bezier(0.4,0,0.2,1);
 }
