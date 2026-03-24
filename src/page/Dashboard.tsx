@@ -1,10 +1,12 @@
-import {  PanelRightInactive, User } from "lucide-react";
+import {  ChartBarDecreasing, File, PanelRightInactive, User } from "lucide-react";
 import Profile from "@/components/User";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 import { useState } from "react";
 import Booking from "@/components/Booking";
 import DynamicFilter from "@/components/DynamicFilter";
+import RecursiveFileExplorer from "@/components/RecursiveFileExplorer";
+import RecursiveCommentTree from "@/components/RecursiveCommentTree";
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("booking");
@@ -21,6 +23,18 @@ export default function Dashboard() {
       label:"Dynamic Filter",
       value:"dynamic-filter",
       component:<DynamicFilter />
+    },
+    {
+      icon:File,
+      label:"File Explorer",
+      value:"file-explorer",
+      component:<RecursiveFileExplorer />
+    },
+    {
+      icon:ChartBarDecreasing,
+      label:"Comment Box",
+      value:"comment-box",
+      component:<RecursiveCommentTree />
     },
     // {
     //   icon: LucideArrowBigUp,
