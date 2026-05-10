@@ -1,4 +1,10 @@
-import {  ChartBarDecreasing, File, PanelRightInactive, User } from "lucide-react";
+import {
+  ChartBarDecreasing,
+  DatabaseZapIcon,
+  File,
+  PanelRightInactive,
+  User,
+} from "lucide-react";
 import Profile from "@/components/User";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
@@ -7,6 +13,7 @@ import Booking from "@/components/Booking";
 import DynamicFilter from "@/components/DynamicFilter";
 import RecursiveFileExplorer from "@/components/RecursiveFileExplorer";
 import RecursiveCommentTree from "@/components/RecursiveCommentTree";
+import MultiStepForm from "@/components/MultiStepForm";
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("booking");
@@ -19,28 +26,35 @@ export default function Dashboard() {
       component: <Profile />,
     },
     {
-      icon:PanelRightInactive,
-      label:"Dynamic Filter",
-      value:"dynamic-filter",
-      component:<DynamicFilter />
+      icon: PanelRightInactive,
+      label: "Dynamic Filter",
+      value: "dynamic-filter",
+      component: <DynamicFilter />,
     },
     {
-      icon:File,
-      label:"File Explorer",
-      value:"file-explorer",
-      component:<RecursiveFileExplorer />
+      icon: File,
+      label: "File Explorer",
+      value: "file-explorer",
+      component: <RecursiveFileExplorer />,
     },
     {
-      icon:ChartBarDecreasing,
-      label:"Comment Box",
-      value:"comment-box",
-      component:<RecursiveCommentTree />
+      icon: ChartBarDecreasing,
+      label: "Comment Box",
+      value: "comment-box",
+      component: <RecursiveCommentTree />,
     },
+    {
+      icon: DatabaseZapIcon,
+      label: "Multi Form",
+      value: "multi-form",
+      component: <MultiStepForm />,
+    },
+
     // {
     //   icon: LucideArrowBigUp,
     //   label: "Booking",
     //   value: "booking",
-    //   component: <Booking 
+    //   component: <Booking
 
     //   layout={{
     //     rows: 8,
@@ -52,10 +66,8 @@ export default function Dashboard() {
     //     premium: { name: "Premium", price: 250, rows: [3, 4, 5] },
     //     vip: { name: "VIP", price: 350, rows: [6, 7] },
     //   }}
-      
+
     //   />,
-
-
 
     // },
   ];
@@ -69,7 +81,7 @@ export default function Dashboard() {
           {items.map((item) => (
             <Button
               className="bg-slate-400 w-full mb-2"
-              variant = {activeTab === item.value ? 'secondary' : 'ghost'}
+              variant={activeTab === item.value ? "secondary" : "ghost"}
               onClick={() => setActiveTab(item.value)}
             >
               <item.icon className="w-4 h-4 mr-2" />

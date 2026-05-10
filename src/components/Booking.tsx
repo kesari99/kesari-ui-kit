@@ -128,11 +128,7 @@ export default function Booking({
     return colorMap[colorName] || colorMap.blue
 
   
-  }
-
-
-  }
-
+  };
 
   const handleSeatClick = (rowIndex, seatIndex) => {
 
